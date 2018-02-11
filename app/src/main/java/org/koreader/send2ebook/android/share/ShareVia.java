@@ -31,7 +31,7 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
     private InputProcessor<String> inputProcessor = new UrlInputProcessor();
     private Creator<EpubEbook> creator = new EpubCreator();
 
-    private Storage storage = FtpStorage.getInstance();
+    private Storage storage ;
     private Activity mActivity;
 
     public ShareVia(Activity mActivity) {
@@ -49,7 +49,7 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
             if (sharedText != null) {
 
                 try {
-                    showMessage("Starting download and clean up");
+                    showMessage("Starting download and clean up document");
 
                     EbookData ebookData = inputProcessor.transformInput(sharedText);
 
@@ -57,7 +57,9 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
                     Ebook ebook = creator.createOutputEbook(ebookData);
 
                     showMessage("Connecting to storage server");
+
                     FtpConnection connection = FtpConnectionFromProperty.getConnection(intentAndContext[0].getContext());
+                    storage = FtpStorage.getInstance();
                     storage.connect(connection);
 
                     showMessage("Saving file to server");
@@ -68,11 +70,11 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
 
                 } catch (IOException e) {
                     LOGGER.log(Level.ALL, "IO Exception occured", e);
-                    showMessage("exception occured : " + e.getMessage() + "\nDetails:  " + e.getStackTrace());
+                    showMessage("exception occured : " + e.getMessage() );
                 } finally {
-
-                    storage.disconnect();
-
+                    if (storage != null) {
+                        storage.disconnect();
+                    }
                 }
             }
         }

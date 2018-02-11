@@ -8,15 +8,15 @@
 
     <TextView
         android:id="@+id/main_text"
-        android:layout_width="352dp"
-        android:layout_height="479dp"
+        android:layout_width="372dp"
+        android:layout_height="495dp"
+        android:layout_marginStart="8dp"
         android:text='Howto: \nin your web browser, choose "Share via" and select "Send2Ebook"'
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAppearance="@android:style/TextAppearance.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.247" />
+        app:layout_constraintVertical_bias="0.72" />
 
 </android.support.constraint.ConstraintLayout>
