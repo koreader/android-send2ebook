@@ -1,7 +1,9 @@
 package org.koreader.send2ebook.android.share;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.widget.TextView;
 
@@ -16,6 +18,7 @@ import com.github.mwoz123.send2ebook.storage.Storage;
 import com.github.mwoz123.send2ebook.storage.ftp.FtpConnection;
 import com.github.mwoz123.send2ebook.storage.ftp.FtpStorage;
 
+import org.koreader.send2ebook.android.SettingsActivity;
 import org.koreader.send2ebook.android.util.FtpConnectionFromProperty;
 
 import java.io.IOException;
@@ -31,7 +34,7 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
     private InputProcessor<String> inputProcessor = new UrlInputProcessor();
     private Creator<EpubEbook> creator = new EpubCreator();
 
-    private Storage storage ;
+    private Storage storage;
     private Activity mActivity;
 
     public ShareVia(Activity mActivity) {
@@ -58,7 +61,7 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
 
                     showMessage("Connecting to storage server");
 
-                    FtpConnection connection = FtpConnectionFromProperty.getConnection(intentAndContext[0].getContext());
+                    FtpConnection connection = this.getConnection(intentAndContext[0].getContext());
                     storage = FtpStorage.getInstance();
                     storage.connect(connection);
 
@@ -70,7 +73,7 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
 
                 } catch (IOException e) {
                     LOGGER.log(Level.ALL, "IO Exception occured", e);
-                    showMessage("exception occured : " + e.getMessage() );
+                    showMessage("exception occured : " + e.getMessage());
                 } finally {
                     if (storage != null) {
                         storage.disconnect();
@@ -79,6 +82,22 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
             }
         }
         return null;
+    }
+
+
+    private FtpConnection getConnection(Context context) {
+        SharedPreferences settings = context.getSharedPreferences(SettingsActivity.STORAGE_NAME, 0);
+
+        String host = settings.getString(SettingsActivity.HOST, "ftp.exmaple_server.com");
+        String user = settings.getString(SettingsActivity.USER, "koreader_user");
+        String passwd = settings.getString(SettingsActivity.PASSWORD, "");
+        String folder = settings.getString(SettingsActivity.FOLDER, "/ebooks/");
+        int port = settings.getInt(SettingsActivity.PORT, 21);
+
+        FtpConnection connection = new FtpConnection(host, user, passwd);
+        connection.setFolder(folder);
+        connection.setPort(port);
+        return connection;
     }
 
     private void showMessage(final String message) {
