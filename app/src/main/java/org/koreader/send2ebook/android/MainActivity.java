@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void licencesAction(View view) {
-        Intent intent = new Intent(this, SettingsActivity.class);
+        Intent intent = new Intent(this, LicenseActivity.class);
         startActivity(intent);
     }
 
