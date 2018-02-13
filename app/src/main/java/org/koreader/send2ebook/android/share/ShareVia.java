@@ -52,9 +52,10 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
             if (sharedText != null) {
 
                 try {
-                    showMessage("Starting download and clean up document");
+                    showMessage("Starting download and clean up document : " + sharedText);
 
-                    EbookData ebookData = inputProcessor.transformInput(sharedText);
+                    boolean processOnlyText = false;
+                    EbookData ebookData = inputProcessor.transformInput(sharedText, processOnlyText);
 
                     showMessage("Creating Epub");
                     Ebook ebook = creator.createOutputEbook(ebookData);

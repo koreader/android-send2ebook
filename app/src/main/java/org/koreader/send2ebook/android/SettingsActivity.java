@@ -72,6 +72,7 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putInt(PORT, port);
 
         editor.commit();
+        this.finish();
     }
 
 }

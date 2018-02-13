@@ -17,12 +17,11 @@ public class LicenseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_license);
 
         license = (EditText) findViewById(R.id.license);
-        String licences = "Licenses:\n\n\n- Apache Commons Collections - Apache License, Version 2.0" +
+        String licences = "Licenses:\n\n\n- Apache Commons IO - Apache License, Version 2.0" +
                 "\n\n- Apache Commons Net - Apache License, Version 2.0" +
                 "\n\n- Apache Log4j2 - Apache License, Version 2.0" +
                 "\n\n- Jsoup - MIT license" +
-                "\n\n- Epublib - GNU Lesser General Public License. " +
-                "\n\n- Apache Log4j2 - Apache License, Version 2.0";
+                "\n\n- Epublib - GNU Lesser General Public License. " ;
 
         license.setText(licences);
     }
