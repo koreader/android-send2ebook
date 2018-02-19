@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.mwoz123.send2ebook.creator.Creator;
@@ -52,6 +54,7 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
             if (sharedText != null) {
 
                 try {
+                    this.startProgress();
                     showMessage("Starting download and clean up document : " + sharedText);
 
                     boolean processOnlyText = false;
@@ -70,6 +73,7 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
                     storage.storeFile(ebook);
 
                     showMessage("Succesfully finished");
+                    this.stopProgress();
 
 
                 } catch (IOException e) {
@@ -84,6 +88,8 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
         }
         return null;
     }
+
+
 
 
     private FtpConnection getConnection(Context context) {
@@ -107,6 +113,28 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
             public void run() {
                 TextView centralTextView = (TextView) mActivity.findViewById(R.id.main_text);
                 centralTextView.setText(message);
+            }
+        });
+    }
+
+    private void startProgress() {
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ProgressBar progressBar = (ProgressBar) mActivity.findViewById(R.id.progressBar);
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.animate();
+            }
+        });
+    }
+
+    private void stopProgress() {
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ProgressBar progressBar = (ProgressBar) mActivity.findViewById(R.id.progressBar);
+                progressBar.setVisibility(View.GONE);
+                progressBar.clearAnimation();
             }
         });
     }

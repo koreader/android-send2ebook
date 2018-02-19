@@ -21,7 +21,8 @@ public class LicenseActivity extends AppCompatActivity {
                 "\n\n- Apache Commons Net - Apache License, Version 2.0" +
                 "\n\n- Apache Log4j2 - Apache License, Version 2.0" +
                 "\n\n- Jsoup - MIT license" +
-                "\n\n- Epublib - GNU Lesser General Public License. " ;
+                "\n\n- Epublib - GNU Lesser General Public License. " +
+                "\n\n- Send2Ebook (lib) - GNU Lesser General Public License." ;
 
         license.setText(licences);
     }

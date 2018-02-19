@@ -22,6 +22,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <EditText
+                android:id="@+id/no_ftp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="false"
+                android:text="Don't have ftp account yet? No worries. There're thousands free on Internet. Just search for 'best free ftp hosting';)"
+                android:textColor="@android:color/black" />
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -97,8 +105,11 @@
                 android:layout_marginTop="16dp"
                 android:onClick="saveAction"
                 android:text="Save"
-                android:textStyle="bold" />
+                android:textStyle="bold" /><![CDATA[
 
+            />
+        ]]>
         </LinearLayout>
+
     </ScrollView>
 </LinearLayout>
