@@ -55,7 +55,7 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
 
                 try {
                     this.startProgress();
-                    showMessage("Starting download and clean up document : " + sharedText);
+                    showMessage("Processing url: " + sharedText);
 
                     boolean processOnlyText = false;
                     EbookData ebookData = inputProcessor.transformInput(sharedText, processOnlyText);
@@ -63,16 +63,17 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
                     showMessage("Creating Epub");
                     Ebook ebook = creator.createOutputEbook(ebookData);
 
-                    showMessage("Connecting to storage server");
+
 
                     FtpConnection connection = this.getConnection(intentAndContext[0].getContext());
+                    showMessage("Connecting to storage server: " + connection.getHost());
                     storage = FtpStorage.getInstance();
                     storage.connect(connection);
 
-                    showMessage("Saving file to server");
+                    showMessage("Saving file to server. File: " + ebook.getTitle());
                     storage.storeFile(ebook);
 
-                    showMessage("Succesfully finished");
+                    showMessage("Succesfully finished. ");
                     this.stopProgress();
 
 
