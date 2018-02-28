@@ -19,20 +19,10 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-/*uploadArchives {
-    repositories {
-        flatDir {
-            dirs 'repo/com/github/mwoz123/'
-        }
-    }
-    artifacts {
-        assembleDebug
-    }
-}*/
