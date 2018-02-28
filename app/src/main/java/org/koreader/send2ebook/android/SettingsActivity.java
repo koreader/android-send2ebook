@@ -12,7 +12,7 @@ import koreader.org.send2ebook.android.R;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    public static final String STORAGE_NAME = "Send2EbookStorage";
+    public static final String STORAGE_NAME = "send2ebookStorage";
 
     public final static String HOST = "host", USER = "user", FOLDER = "folder",
             PASSWORD = "password", PORT = "port";

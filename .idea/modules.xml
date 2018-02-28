@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Send2Ebook-android.iml" filepath="$PROJECT_DIR$/Send2Ebook-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/send2ebook-android.iml" filepath="$PROJECT_DIR$/send2ebook-android.iml" />
     </modules>
   </component>
 </project>

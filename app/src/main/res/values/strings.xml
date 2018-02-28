@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Send2Ebook</string>
+    <string name="app_name">send2ebook</string>
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to login -->
