@@ -70,16 +70,17 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
                     storage = FtpStorage.getInstance();
                     storage.connect(connection);
 
-                    showMessage("Saving file to server. File: " + ebook.getTitle());
+                    showMessage("Saving file to server. " );
                     storage.storeFile(ebook);
 
-                    showMessage("Succesfully finished. ");
+                    showMessage("Succesfully finished processing:\n" + ebook.getTitle());
                     this.stopProgress();
 
 
                 } catch (IOException e) {
                     LOGGER.log(Level.ALL, "IO Exception occured", e);
                     showMessage("exception occured : " + e.getMessage());
+                    this.stopProgress();
                 } finally {
                     if (storage != null) {
                         storage.disconnect();
