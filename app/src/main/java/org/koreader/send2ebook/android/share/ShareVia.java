@@ -60,7 +60,7 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
                     boolean processOnlyText = false;
                     EbookData ebookData = inputProcessor.transformInput(sharedText, processOnlyText);
 
-                    showMessage("Creating Epub");
+                    showMessage("Creating Ebook");
                     Ebook ebook = creator.createOutputEbook(ebookData);
 
 
