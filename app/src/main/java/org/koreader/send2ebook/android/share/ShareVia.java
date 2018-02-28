@@ -55,7 +55,7 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
 
                 try {
                     this.startProgress();
-                    showMessage("Processing url: " + sharedText);
+                    showMessage("Processing url:\n" + sharedText);
 
                     boolean processOnlyText = false;
                     EbookData ebookData = inputProcessor.transformInput(sharedText, processOnlyText);
@@ -66,20 +66,20 @@ public class ShareVia extends AsyncTask<IntentAndContext, Void, Void> {
 
 
                     FtpConnection connection = this.getConnection(intentAndContext[0].getContext());
-                    showMessage("Connecting to storage server: " + connection.getHost());
+                    showMessage("Connecting to storage server:\n" + connection.getHost());
                     storage = FtpStorage.getInstance();
                     storage.connect(connection);
 
                     showMessage("Saving file to server. " );
                     storage.storeFile(ebook);
 
-                    showMessage("Succesfully finished processing:\n" + ebook.getTitle());
+                    showMessage("Successfully finished processing:\n" + ebook.getTitle());
                     this.stopProgress();
 
 
                 } catch (IOException e) {
                     LOGGER.log(Level.ALL, "IO Exception occured", e);
-                    showMessage("exception occured : " + e.getMessage());
+                    showMessage("Exception occurred :\n" + e.getMessage());
                     this.stopProgress();
                 } finally {
                     if (storage != null) {
